@@ -1,0 +1,27 @@
+math-field {
+    --caret-color: black;
+    --selection-background-color: white;
+    --selection-background-color-focused: white;
+    --selection-color: black;
+    --selection-color-focused; white;
+    --contains-highlight-backround-color:white;
+    --smart-fence-color:white;
+    --placeholder-color:white;
+    --correct-color:green;
+    --incorrect-color:red;
+    --composition-background-color:white;
+    --text-hightlight-background-color:white;
+    background: white;
+    font-size:24px;
+    border:none;
+    width:100%;
+    height:100%;
+    outline:none;
+    display:flex;
+    justify-content: center;
+}
+
+math-field::part(virtual-keyboard-toggle) {
+    display: none;
+}
+

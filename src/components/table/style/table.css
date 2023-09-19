@@ -1,0 +1,403 @@
+:root {
+  --dsg-border-color: black;
+  --dsg-selection-border-color: none;
+  --dsg-selection-border-width: 1px;
+  --dsg-selection-background-color: white;
+  --dsg-selection-disabled-border-color: black;
+  --dsg-selection-disabled-background-color: white;
+  --dsg-header-text-color: black;
+  --dsg-header-active-text-color: black;
+  --dsg-cell-background-color: white;
+  --dsg-cell-disabled-background-color: white;
+}
+
+.dsg-container {
+  border: solid black 1px;
+  border-top: none;
+  border-left: none;
+  cursor: cell;
+  user-select: none;
+  box-sizing: border-box;
+  color: black;
+  background: white;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  will-change: transform;
+  direction: ltr;
+  font-size: 20px
+}
+
+.dsg-row {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.dsg-row-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.dsg-cell {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  background: white;
+  border: solid black 1px;
+  border-bottom: none;
+  border-right: none;
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+
+.dsg-cell-header {
+    display: flex;
+    justify-content: center
+}
+
+.dsg-cell-header,
+.dsg-cell-gutter {
+  color: black;
+  box-shadow: none;
+  background: rgb(242, 242, 242);
+}
+
+.dsg-cell-header-container {
+  padding: 0 10px;
+  line-height: 15px;
+}
+
+.dsg-cell-gutter {
+  position: sticky;
+  left: 0;
+  padding: 0 5px;
+  justify-content: center;
+  z-index: 30;
+  height: 100%;
+  background: rgb(242, 242, 242);
+}
+
+.dsg-active-cell,
+.dsg-selection-rect {
+  position: absolute;
+  border: solid var(--dsg-selection-border-width)
+    var(--dsg-selection-border-color);
+  box-sizing: border-box;
+  border-radius: var(--dsg-selection-border-radius);
+  transition: all var(--dsg-transition-duration);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.dsg-scrollable-view-container {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+}
+
+.dsg-scrollable-view {
+  position: sticky;
+  z-index: 10;
+  box-sizing: border-box;
+  border: solid 1px var(--dsg-border-color);
+  border-bottom: none;
+  border-right: none;
+  transition: box-shadow 0.3s;
+  box-shadow: 0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-t {
+  box-shadow: 0 var(--dsg-scroll-shadow-width) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-r {
+  box-shadow: 0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    calc(0px - var(--dsg-scroll-shadow-width)) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-b {
+  box-shadow: 0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-l {
+  box-shadow: 0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    var(--dsg-scroll-shadow-width) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-t.dsg-scrollable-view-r {
+  box-shadow: 0 var(--dsg-scroll-shadow-width) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    calc(0px - var(--dsg-scroll-shadow-width)) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-r.dsg-scrollable-view-b {
+  box-shadow: 0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    calc(0px - var(--dsg-scroll-shadow-width)) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-b.dsg-scrollable-view-l {
+  box-shadow: 0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    var(--dsg-scroll-shadow-width) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-l.dsg-scrollable-view-t {
+  box-shadow: 0 var(--dsg-scroll-shadow-width) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    var(--dsg-scroll-shadow-width) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-t.dsg-scrollable-view-b {
+  box-shadow: 0 var(--dsg-scroll-shadow-width) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-l.dsg-scrollable-view-r {
+  box-shadow: 0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    calc(0px - var(--dsg-scroll-shadow-width)) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    var(--dsg-scroll-shadow-width) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-t.dsg-scrollable-view-r.dsg-scrollable-view-b {
+  box-shadow: 0 var(--dsg-scroll-shadow-width) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    calc(0px - var(--dsg-scroll-shadow-width)) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-r.dsg-scrollable-view-b.dsg-scrollable-view-l {
+  box-shadow: 0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    calc(0px - var(--dsg-scroll-shadow-width)) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    var(--dsg-scroll-shadow-width) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-b.dsg-scrollable-view-l.dsg-scrollable-view-t {
+  box-shadow: 0 var(--dsg-scroll-shadow-width) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    var(--dsg-scroll-shadow-width) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-l.dsg-scrollable-view-t.dsg-scrollable-view-r {
+  box-shadow: 0 var(--dsg-scroll-shadow-width) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    calc(0px - var(--dsg-scroll-shadow-width)) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    var(--dsg-scroll-shadow-width) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-scrollable-view-t.dsg-scrollable-view-r.dsg-scrollable-view-b.dsg-scrollable-view-l {
+  box-shadow: 0 var(--dsg-scroll-shadow-width) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    calc(0px - var(--dsg-scroll-shadow-width)) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    0 calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset,
+    var(--dsg-scroll-shadow-width) 0 var(--dsg-scroll-shadow-width)
+      calc(0px - var(--dsg-scroll-shadow-width)) var(--dsg-scroll-shadow-color)
+      inset;
+}
+
+.dsg-selection-col-marker-container {
+  position: absolute;
+  top: 0;
+}
+
+.dsg-selection-col-marker {
+  background: var(--dsg-selection-border-color);
+  position: sticky;
+  width: 100%;
+  height: var(--dsg-selection-border-width);
+}
+
+.dsg-selection-row-marker-container {
+  position: absolute;
+  left: 0;
+}
+
+.dsg-selection-row-marker {
+  background: var(--dsg-selection-border-color);
+  position: sticky;
+  height: 100%;
+  width: var(--dsg-selection-border-width);
+}
+
+.dsg-selection-col-marker-container,
+.dsg-selection-col-marker,
+.dsg-selection-row-marker-container,
+.dsg-selection-row-marker {
+  z-index: 20;
+  transition: all var(--dsg-transition-duration);
+  pointer-events: none;
+}
+
+.dsg-input {
+  display: block;
+  flex: 1;
+  border: none;
+  min-width: 0;
+  align-self: stretch;
+  box-sizing: border-box;
+  background: none;
+  padding: 0 10px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.dsg-input-suffix {
+  padding-right: 10px;
+  opacity: 0.5;
+  margin-left: -5px;
+}
+
+.dsg-input-align-right {
+  text-align: right;
+}

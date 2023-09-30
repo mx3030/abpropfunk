@@ -135,7 +135,7 @@ export default function Task1(){
             <GGBDataContext.Provider value={{ ggbData, updateGGBData }}>
             <InputDataContext.Provider value={{ inputData, updateInputData }}>
                 <MainContainer mainwidth={miscData.mainWidth}>
-                    <WritingContainer> 
+                    <WritingContainer id="writingContainer"> 
                         <Step0 />  
                         <VerticalSpace/>
                         {progressData.step0 && <Step1 />} 

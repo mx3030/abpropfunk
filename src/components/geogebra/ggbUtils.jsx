@@ -22,14 +22,16 @@ export async function extractCoefficientsFromLine(ref,name, functionString) {
         const slope = -a / b 
         const yIntersection = -c / b
         return [slope, yIntersection]
-    } catch (e) { // this step is probably not needed anymore, because of sol!=null condition in Updater
+    } catch (e) { 
         // on reload ggb functions not working --> use mathjs lib
         const split = functionString.split(/:|=/);
+        
         if(split.length==2){ // y = mx+c
-            const coefficients = rationalize(split[1],{},true).coefficients[0]
+            const coefficients = rationalize(split[1],{},true).coefficients
             const slope = coefficients[1]
             const yIntersection = coefficients[0]
             return [slope, yIntersection]
+        
         } else if(split.length==3){ // f: ax+by=c
             var vars = rationalize(split[1],{},true).variables
             if(vars.length==2){ // a!=0 b!=0
@@ -45,6 +47,7 @@ export async function extractCoefficientsFromLine(ref,name, functionString) {
             const c = parseFloat(split[2])
             const yIntersection = -c/b
             return [slope, yIntersection]
+        
         } else return [null, null]
     }
 }

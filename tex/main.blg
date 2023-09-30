@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2023)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: plain.bst
+Database file #1: bibliography.bib
+Warning--empty journal in Schulentwicklung2017
+Warning--empty journal in Kultus2016
+You've used 4 entries,
+            2118 wiz_defined-function locations,
+            519 strings with 4438 characters,
+and the built_in function-call counts, 845 in all, are:
+= -- 77
+> -- 28
+< -- 0
++ -- 12
+- -- 8
+* -- 34
+:= -- 162
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 15
+chr.to.int$ -- 0
+cite$ -- 6
+duplicate$ -- 42
+empty$ -- 74
+format.name$ -- 8
+if$ -- 168
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 5
+newline$ -- 23
+num.names$ -- 8
+pop$ -- 24
+preamble$ -- 1
+purify$ -- 12
+quote$ -- 0
+skip$ -- 27
+stack$ -- 0
+substring$ -- 20
+swap$ -- 2
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 14
+warning$ -- 2
+while$ -- 8
+width$ -- 5
+write$ -- 40
+(There were 2 warnings)

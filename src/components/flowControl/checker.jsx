@@ -11,11 +11,11 @@ import {
 from './checkerFunctions.jsx'
 
 const functionMapper = {
-    'compareNumbers' : compareNumbers,
-    'compareTables' : compareTables, 
-    'comparePointLists': comparePointLists,
-    'compareLines' : compareLines,
-    'compareTablesLength': compareTablesLength,
+    'compareNumbers'        : compareNumbers,
+    'compareTables'         : compareTables, 
+    'comparePointLists'     : comparePointLists,
+    'compareLines'          : compareLines,
+    'compareTablesLength'   : compareTablesLength,
 }
 
 export default function Checker({ commands, ggbData, tableData, inputData, solHandler, progressHandler }){ 

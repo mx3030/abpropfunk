@@ -22,7 +22,7 @@ export default function Measurement({taskDataTable, progressData, tableHandler, 
             />
             <VerticalSpace query='xs' size="50px"/>
             <VerticalSpace query='lg' size="0px"/>
-            { (taskDataTable && progressData ? progressData[taskDataTable.showTimer] : true) && <MyStopwatch/> }
+            { (taskDataTable && (progressData ? progressData[taskDataTable.showTimer] : true) && (progressData ? !progressData[taskDataTable.hideTimer] : true) ) && <MyStopwatch/> }
         </MeasurementBlock>
     )    
 }

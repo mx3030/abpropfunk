@@ -36,6 +36,25 @@ export async function createRegression(ggbRef, points, offset=0) {
     }
 }
 
+function tableData2ggbPoints(original_data){
+    const transformed_data = {};
+    for (let index = 0; index < original_data.length; index++) {
+        const key = index.toString(); // Use index as a string key
+        transformed_data[key] = {
+            "x": parseInt(original_data[index][Object.keys(original_data[index])[0]], 10),
+            "y": parseInt(original_data[index][Object.keys(original_data[index])[1]], 10)
+        };
+    }
+    return transformed_data;
+}
+
+export async function createRegressionFromTable(ggbRef, tableData, offset=0 ){
+    var points = tableData2ggbPoints(tableData)
+    var reg = await createRegression(ggbRef, points, 0)
+    var eq = `-${reg.m[0]}x+y=0`
+    return eq
+}
+
 export async function createValuePair(ggbRef,equation, conditions, variables, target ){
     try{
         const sol = await ggbSolveEquation(ggbRef, equation, conditions, variables, target )
@@ -56,3 +75,17 @@ export function calc(input, calculationString) {
     }
 }
 
+export function trimTable(originalTable, columnNames ) {
+    try{
+        const newTable = originalTable.map(row => {
+            const newRow = {};
+            columnNames.forEach(colName => {
+                newRow[colName] = row[colName];
+            });
+            return newRow;
+        });
+        return newTable;
+    } catch (e) {
+        return null
+    }   
+}

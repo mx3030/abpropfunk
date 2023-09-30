@@ -36,7 +36,7 @@ export default function FlowControl({
         <Updater
             commands = {taskData[step].updater}
             ggbRef={ggbRef}
-            progressData = {progressData}
+            progressHandler = {progressHandler}
             solHandler = {solHandler}
             parentCallback = {handleUpdaterCallback}
         />

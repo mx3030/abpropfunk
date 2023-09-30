@@ -1,0 +1,49 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../img/}},{img},{img/ink}}
+
+
+\begin{document}
+
+
+\section{Einordnung der Stunde in die Unterrichtseinheit}
+Der vorliegende Unterrichtsentwurf ist eine Doppelstunde zur Einführung in das Themengebiet \glqq Proportionalität\grqq{} in Klasse 7/8. In einem Beispielcurriculum für das Fach Mathematik vom \glqq Landesinstitut für Schulentwicklung\grqq{} \cite{Schulentwicklung2017} wird für das gesamte Thema ein Umfang ca. 10 Schulstunden angesetzt (Übungszeit mit eingerechnet). Eine mögliche Strukturierung der gesamten Unterrichtseinheit ist in Tabelle \ref{table:1} dargestellt.\\
+Betrachtet man die Unterrichtseinheit im Rahmen der Gesamtplanung für das Schuljahr, so setzt diese ohne großen Bezug zu vorherigen Themen ein. Vielmehr soll die Unterrichtseinheit dazu dienen, Erkenntnisse aus Klasse 6 aufzufrischen und ein Ausgangsniveau zu sichern, mit dem die SuS für die anschließende Unterrichtseinheit zum Thema \glqq Lineare Funktionen \grqq{} vorbereitet sind.\\ 
+\begin{table}[h]
+    \centering
+    \begin{tabularx}{\textwidth}
+        { 
+            >{\centering\arraybackslash}p{0.2\linewidth} 
+            @{\hspace{0.5cm}} 
+            p{0.6\linewidth} 
+            @{\hspace{0.5cm}} 
+            >{\centering\arraybackslash}p{0.12\linewidth} 
+            @{\hspace{0.5cm}} 
+        }
+        \rowcolor{tablegray1} 
+        \textbf{Studenthema} & \quad \textbf{didaktisch-methodischer Schwerpunkt} & \textbf{Stunden- zahl} \\
+        \\[-5ex]
+        \rowcolor{tablegray2}
+        \tikzmark{a} Zuordnungen allgemein& Reale Experimente zur Wiederholung der Darstellungsformen Tabelle/Graph/Verbal. Fokus liegt auf linearen und vor allem proportionalen Zusammenhängen. Präsentation und Diskussion der Ergebnisse. & 2 \tikzmark{b} \\
+        \\[-5ex]
+        \rowcolor{tablegray1}
+        Direkte Proportionalität & Systematisierung des Umgangs mit direkten Proportionalitäten. Proportionalitätsfaktor (Quotientengleichheit), Dreisatz und Ursprungsgerade. & 2\\
+        \\[-5ex]
+        \rowcolor{tablegray2}
+        Algebraische Darstellung & Gleichung einer proportionalen Zuordnung \newline $y=m \cdot x$ und Herausarbeitung des Begriffs der Änderungsrate. & 2\\
+        \\[-5ex]
+        \rowcolor{tablegray1}
+        Indirekte Proportionalität & Abgrenzung gegenüber nicht proportionalen Vorgängen herausstellen. Eigenschaften erarbeiten. & 2\\
+        \\[-5ex]
+        \rowcolor{tablegray2}
+        Übungsstunde & Vermischte Aufgaben in verschiedenen Schwierigkeitsstufen. Eventuell bereits Ausblick auf lineare Funktionen. & 2\\
+    \end{tabularx}
+    \begin{tikzpicture}[remember picture,overlay]
+        \draw[line width=2pt,draw=black,rounded corners=0pt]
+            ([xshift=-11pt,yshift=15pt]a.north) rectangle ([xshift=25pt,yshift=-62pt]b.south);
+    \end{tikzpicture}
+    %\caption{Mögliche Struktur zur Unterrichtseinheit \glqq Proportionalität\grqq{} in Klasse 7/8. Es stehen in der Regel ca. 10 Unterrichtsstunden zur Verfügung.}
+    \label{table:1}
+    \caption{Strukturierung der Unterrichtseinheit \glqq Proportionale Funktionen\grqq{}.}
+\end{table}
+
+\end{document}

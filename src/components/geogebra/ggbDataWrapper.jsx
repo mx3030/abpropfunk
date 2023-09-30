@@ -22,6 +22,7 @@ export default function GGBDataWrapper( {
 
     const createGGBData= useCallback(async (objects,data)=>{
         var prevPoints = data.points // keep track of last points list
+        var prevLines = data.lines
         var mode = await ggbRef.current.getMode()
         var points = {}
         var lines = {}
@@ -49,14 +50,18 @@ export default function GGBDataWrapper( {
             }
 
             if(objectType=='line'){
-                lines[objects[i]] = {}
-                const pointsOnLine = extractPointsFromCommandString(await ggbRef.current.getCommandString(objects[i])) // get two points on line from command string 
-                lines[objects[i]].points=pointsOnLine 
-                var valueString = await ggbRef.current.getValueString(objects[i]) // get implicit equation of line
-                lines[objects[i]].eq = valueString.replace(/^[a-zA-Z]:\s*/, ''); // regex to remove first part
-                var [slope, yIntersection] = await extractCoefficientsFromLine(ggbRef,objects[i], valueString) // get m,c of line 
-                lines[objects[i]].m = slope
-                lines[objects[i]].c = yIntersection 
+                try{ // catch promise error from extractCoefficientsFromLine function on reload
+                    const pointsOnLine = extractPointsFromCommandString(await ggbRef.current.getCommandString(objects[i])) // get two points on line from command string 
+                    var valueString = await ggbRef.current.getValueString(objects[i]) // get implicit equation of line
+                    var [slope, yIntersection] = await extractCoefficientsFromLine(ggbRef,objects[i], valueString) // get m,c of line 
+                    lines[objects[i]] = {}
+                    lines[objects[i]].points=pointsOnLine 
+                    lines[objects[i]].eq = valueString.replace(/^[a-zA-Z]:\s*/, ''); // regex to remove first part
+                    lines[objects[i]].m = slope
+                    lines[objects[i]].c = yIntersection
+                } catch (e) {
+                    lines[objects[i]] = prevLines[objects[i]] // use old ggbData if not working
+                }    
             }
         } 
         setData({points: points, lines: lines}) 

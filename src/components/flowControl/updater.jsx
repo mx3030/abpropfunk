@@ -2,21 +2,26 @@ import { useState, useEffect } from 'react';
 import {
     moveData,
     createRegression,
+    createRegressionFromTable,
     createValuePair,
     calc,
+    trimTable,
 }
 from './updaterFunctions.jsx'
 
 const updaterMapper = {
-    "moveData" : moveData,
-    "createRegression" : createRegression,
-    "createValuePair" : createValuePair,
-    "calc" : calc,
+    "moveData"                  : moveData,
+    "createRegression"          : createRegression,
+    "createRegressionFromTable" : createRegressionFromTable,
+    "createValuePair"           : createValuePair,
+    "calc"                      : calc,
+    "trimTable"                 : trimTable,
 }
 
-export default function Updater({ ggbRef, commands, progressData, solHandler }){
+export default function Updater({ ggbRef, commands, progressHandler, solHandler }){
      
-    const [solData, updateSolData] = solHandler 
+    const [solData, updateSolData] = solHandler
+    const [progressData, updateProgressData] = progressHandler
     
     const dataMapper = {
         'solData': solData, // updater only needs solData at the moment
@@ -42,7 +47,12 @@ export default function Updater({ ggbRef, commands, progressData, solHandler }){
             // function ( (ggbRef), data, args ) --> return sol
             if(command.ggbRef==true) var sol = await updaterMapper[command.action](ggbRef, input,...command.args)
             else var sol = updaterMapper[command.action](input,...command.args)
-            if(sol!=null) updateSolData(command.target,sol) // sol != null important for reloading, because otherwise those values are problematic to be calculatet with ggbUtils functions (applet startup bug)
+            if(sol!=null){
+                updateSolData(command.target,sol) // sol != null important for reloading, because otherwise those values are problematic to be calculatet with ggbUtils functions (applet startup bug)
+                if(command.step!=null) updateProgressData(command.step,true) // use additional progress step --> set to true
+            } else {
+                if(command.step!=null) updateProgressData(command.step,false) // use additional progress step --> set to false
+            }
         }
         
         for(var i=0; i< commands.length; i++){

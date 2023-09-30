@@ -7,13 +7,25 @@ export const step2_initSol = {
         { 'col0':{val: 1,   diff: 0} },
         { 'col0':{val: 1.5, diff: 0} },
         { 'col0':{val: 2,   diff: 0} },
+        { 'col0':{val: 2.5, diff: 0} },
+        { 'col0':{val: 3,   diff: 0} },
+        { 'col0':{val: 3.5, diff: 0} },
+        { 'col0':{val: 4,   diff: 0} },
+        { 'col0':{val: 4.5, diff: 0} },
+        { 'col0':{val: 5,   diff: 0} },
     ],
     step2B_init : [
-        { 'col0':{val: 0,   diff: 0}    , 'col1':{val: 0, diff: 1} },
-        { 'col0':{val: 0.5, diff: 0}    , 'col1':{val: 1, diff: 1} },
-        { 'col0':{val: 1,   diff: 0}    , 'col1':{val: 2, diff: 1} },
-        { 'col0':{val: 1.5, diff: 0}    , 'col1':{val: 3, diff: 1} },
-        { 'col0':{val: 2,   diff: 0}    , 'col1':{val: 4, diff: 1} },
+        { 'col0':{val: 0,   diff: 0}    , 'col1':{val: 0,   diff: 0.25} },
+        { 'col0':{val: 0.5, diff: 0}    , 'col1':{val: 0.75,diff: 0.25} },
+        { 'col0':{val: 1,   diff: 0}    , 'col1':{val: 1.5, diff: 0.25} },
+        { 'col0':{val: 1.5, diff: 0}    , 'col1':{val: 2.25,diff: 0.25} },
+        { 'col0':{val: 2,   diff: 0}    , 'col1':{val: 3,   diff: 0.25} },
+        { 'col0':{val: 2.5, diff: 0}    , 'col1':{val: 3.75,diff: 0.25} },
+        { 'col0':{val: 3,   diff: 0}    , 'col1':{val: 4.5, diff: 0.25} },
+        { 'col0':{val: 3.5, diff: 0}    , 'col1':{val: 5.25,diff: 0.25} },
+        { 'col0':{val: 4,   diff: 0}    , 'col1':{val: 6,   diff: 0.25} },
+        { 'col0':{val: 4.5, diff: 0}    , 'col1':{val: 6.75,diff: 0.25} },
+        { 'col0':{val: 5,   diff: 0}    , 'col1':{val: 7.5, diff: 0.25} },
     ], // my own measurement at home 
 }
 
@@ -50,6 +62,7 @@ export const step2_data = {
         header: ['Zeit in [min]','Volumen in [ml]'],
         startValues: [{'col0':'0','col1':'0'}],
         showTimer: 'step2A', // after which progress timer shows up
+        hideTimer: 'step2B', // after which progress timer hide
     },
 
     checker: [

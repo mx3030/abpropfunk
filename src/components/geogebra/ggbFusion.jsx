@@ -33,7 +33,9 @@ export default function GGBFusion({
         //console.log("left slider value:", data[0]),
         //console.log("bottom slider value:", data[1]),
     })
- 
+    
+    //TODO: better handling of different use cases
+
     const BaseWrapper= (
         <GGBApplet 
             ref={ggbRef} // ref forward
@@ -95,7 +97,8 @@ export default function GGBFusion({
             sliderStartPosition={sliderStartPosition}   // pass saved slider values
             sliderSettings={sliderSettings}             // pass slider settings (step, max, min, ...)
         >
-            <div style={{margin:'50px'}}>{ReloadWrapper}</div>    
+            {ggbData!=null && <div style={{margin:'50px'}}>{ReloadWrapper}</div>}   {/* ggbData is used */}
+            {ggbData==null && <div style={{margin:'50px'}}>{BaseWrapper}</div>}     {/* ggbData not used */}
         </GGBSliderWrapper>
     )
 

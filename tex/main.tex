@@ -1,0 +1,69 @@
+\documentclass[12pt,a4paper]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+
+\usepackage{geometry}
+ \geometry{
+ %left=20mm,
+ %right=20mm,
+ top=30mm,
+ }
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{twemojis}
+
+% Tabellen
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{lscape}
+\usepackage{tikz}
+\usepackage{makecell}
+
+% manage file splitting
+\usepackage{subfiles}
+
+\graphicspath{{img/}{img/ink/}}
+
+% my definitions
+\definecolor{tablegray1}{RGB}{217, 217, 217}
+\definecolor{tablegray2}{RGB}{242, 242, 242}
+\renewcommand{\arraystretch}{2}   
+\newcommand\tikzmark[1]{\tikz[remember picture,overlay] \node (#1) {};}
+
+\title{Unterrichtsentwurf - Einführung in proportionale Funktionen durch Schülerexperimente}
+\author{Maximilian Frank}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
+\subfile{sections/Unterrichtseinheit/Unterrichtseinheit}
+%\newpage
+\subfile{sections/Verlaufsplan/Verlaufsplan}
+%\newpage
+\subfile{sections/Rahmenbedingungen/Rahmenbedingungen}
+%\newpage
+\subfile{sections/Aufgabenanalyse/Aufgabenanalyse}
+%\newpage
+\subfile{sections/Didaktik/Didaktik}
+%\newpage
+\subfile{sections/Ziele/Ziele}
+%\newpage
+\subfile{sections/Methodik/Methodik}
+%\newpage
+
+\bibliographystyle{plain}
+\bibliography{bibliography.bib}
+
+\end{document}
